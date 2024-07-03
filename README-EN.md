@@ -1,11 +1,4 @@
----
-
-typora-root-url: ./picture
----
-
-Chinese version of the README -> please [click here](./README.md)
-
-Dobot   TCP-IP-MG400-CPP   secondary development API interface ( [TCP-IP-MG400-CPP Chinese README](https://github.com) )
+# Note: The below ReadMe is based on the original Dobot TCP-IP-MG400-CPP documenation
 
 # 1\. Introduction
 
@@ -23,7 +16,7 @@ TCP-IP-MG400-CPP contains
 
 * Ubuntu 14.04/Ubuntu 16.04/Ubuntu 18.04, x86 and ARM (Nvidia TX2)
 
-* Windows 7/10, Visual Studio 2015 Update3/2017/2019
+* Windows 10/11, Visual Studio 2015 Update3/2017/2019
 
 * C++11 compiler
   
@@ -37,30 +30,12 @@ TCP-IP-MG400-CPP contains
 |:----------:|:----------:|
 | V1.0.0.0| 2023-03-07 |
 
-# 2\. Technical support
-
-If you have any questions or suggestions, you can contact Dobot's technical support:
-
-* Send an email to futingxing@dobot-robots.com with a detailed description of the problem you are experiencing and the scenario in which you are using it.
-* Send an email to wuyongfeng@dobot-robots.com with a detailed description of the problem you are experiencing and the scenario in which you are using it.
-
-# 3\. TCP-IP-MG400-CPP control protocol
+# 2\. TCP-IP-MG400-CPP control protocol
 
 As the communication based on TCP/IP has high reliability, strong practicability and high performance with low cost, many industrial automation projects have a wide demand for controlling robots based on TCP/IP protocol. Therefore, the MG400/M1Pro robot is designed to provide rich interfaces for interaction with external devices based on the TCP/IP protocol. For more details, see [TCP_IP Remote Control Interface Guide](https://github.com/Dobot-Arm/TCP-IP-Protocol.git).
-
-## 4\. Obtaining and establishing TCP-IP-MG400-CPP
-
-1. Obtain the secondary development SDK program of Dobot TCP-IP-4Axis-CPP from Dobot GitHub.
-  
-   ```bash
-   `git clone https://github.com/Dobot-Arm/TCP-IP-4Axis-CPP.git`
-   ```
-
-    **Note**: Refer to the corresponding README.md file for use.
-
  
 
-## 5\. File and class descriptions
+## 3\. File and class descriptions
 
 1. The api directory contains various classes that encapsulate the related functions of MG400/M1Pro, which are written based on C++.
 
@@ -133,7 +108,7 @@ Derived from DobotClient, it implements the specific feedback services of the ro
 
 **For details, see the PythonExample.py and the Demo example.**
 
-# 6\. Common Problem
+# 4\. Common Problems
 
 **Problem 1:**  TCP connection. Port 29999/30003 cannot be connected or cannot deliver commands after connecting.
 
@@ -143,77 +118,50 @@ Derived from DobotClient, it implements the specific feedback services of the ro
 
 **Solution:**  If motion queue is blocked, you can try to reopen the queue by delivering **clearerror()** and **continue()** commands via port 29999.
 
-# 7\. Example
+# 5\. Example
 
 * Dobot-Demo realizes TCP control of the robot and other interactions. It connects to the control port, motion port, and feedback port of the robot respectively. It delivers motion commands to robot, and handles the abnormal status of the robot, etc.
 
 1. Main thread: Connect to the control port, motion port, and feedback port of the robot respectively. Enable the robot.
 
-![](main_en.png)
-
 2. Feedback status thread: Real-time feedback of robot status information.
-
-![](feed_en.png)
 
 3. Robot motion thread: Deliver motion commands to robot.
 
-![](move_en.png)
-
 4. Exception handling thread: Judge and handle the abnormal status of the robot.
-
-![](excetion_en.png)
 
 **Steps to run the Demo:**
 
-1. Obtain the secondary development API program of Dobot TCP-IP-4Axis-Python-CMD from GitHub.
-  
-   ```bash
-   `git clone https://github.com/Dobot-Arm/TCP-IP-4Axis-CPP.git
-   ```
+***Before testing any robotic arm movement, make sure the area surrounding the robot is clear of obstacles and other objects to avoid collision. Failure to do so can result in property damage, injury, and/or damage to the robotic arm and its end effectors***
 
-2. Connect to the robot via LAN1 interface, and set the local IP address to 192.168.1.X.
+1. Connect to the robot via LAN1 interface, and set the local IP address to 192.168.1.X.
   
    Control Panel >> Network and Internet >> Network Connections.
-   
-   ![](netConnect_en.png)
    
    Select the connected Ethernet >> Right click >> Properties >> Internet Protocol Version (TCP/IPV4).
    
    Modify the IP address to 192.168.1.X.
    
-   ![](updateIP_en.png)
 
-3. Open the DobotStudio Pro, connect to the robot, and set the robot mode to **TCP/IP secondary development**.
-  
-   ![](checkTcpMode_en.png)
+2. Open the DobotStudio Pro, connect to the robot, and set the robot mode to **TCP/IP secondary development**.
 
-4. Run program
-  
-   1. Obtain the secondary development API program of Dobot TCP-IP-4Axis-CPP from Dobot GitHub.
-     
-      ```bash
-      `git clone https://github.com/Dobot-Arm/TCP-IP-4Axis-CPP.git`
-      ```
-   
-       
-   
-   2. Enter the directory >> TCP-IP-4Axis-CPP/CppDemo/ folder to compile the Demo program.
-   
+3. Run program
+
+   1. Enter the directory >> TCP-IP-4Axis-CPP/CppDemo/ folder to compile the Demo program.
+
    ```bash
    cd   TCP-IP-CR-CPP/CppDemo/
    bash compileDemo.sh
    ```
-   
-   3. Run the Demo.
-   
+
+   2. Run the Demo.
+
    ```bash
    bash runDemo.sh
    ```
 
-**Common problem**
+**Common problems**
 
-**Problem 1: Make sure the robot is in TCP/IP mode**
+**Problem 1**: Make sure the robot is in TCP/IP mode
 
-**Problem 2: Confirm the Cartesian coordinates of the different models (MG400/M1pro) in the Demo**
-
-**Make sure the robot is in a safe position before running the Demo to prevent unnecessary collisions**
+**Problem 2**: Confirm the Cartesian coordinates of the different models (MG400/M1pro) in the Demo
